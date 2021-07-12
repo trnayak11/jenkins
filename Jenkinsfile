@@ -7,11 +7,13 @@ pipeline{
 				}
 			}
 		stage('codeAnalsis'){
+				environment {
+					scannerHome = tool 'sonar'
+				}
 				steps {
-					def mvnHome = tool name: 'mvn'
-					withSonarQubeEnv('sonar') {
-						sh "${mvnHome}/bin/mvn sonar:sonar"
-					}
+						withSonarQubeEnv('sonarqube') {
+							sh "${scannerHome}/bin/sonar-scanner"
+						}
 				}
 			}
 		stage('push'){
