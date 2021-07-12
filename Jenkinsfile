@@ -13,7 +13,7 @@ pipeline{
 		
 		stage('build'){
 				steps {
-					sh 'mvn clean install -f pom.xml' 
+					sh 'mvn clean' 
 				}
 			}
 		}
