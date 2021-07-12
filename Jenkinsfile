@@ -1,9 +1,7 @@
 pipeline{
 	agent any
 	tools {
-		name: 'mvn'
-		type: 'maven'
-		
+		maven 'mvn'
 	}
 	stages{
 		stage('pull'){
@@ -14,7 +12,7 @@ pipeline{
 		
 		stage('build'){
 				steps {
-					sh 'mvn clean' 
+					bat 'mvn clean' 
 				}
 			}
 		}
