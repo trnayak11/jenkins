@@ -10,17 +10,26 @@ pipeline{
 				}
 			}
 		
-		stage('build'){
-				steps {
-					bat 'mvn clean install' 
-				}
-			}
-	    stage('codeQuality'){
+		stage('codeQuality'){
 				steps {
 					withSonarQubeEnv('sonar'){
 					bat 'mvn sonar:sonar' 
 				}
 			}
 		}
+		stage("Quality Gate") {
+            steps {
+              timeout(time: 1, unit: 'HOURS') {
+                waitForQualityGate abortPipeline: true
+              }
+            }
+          }
+		
+		stage('build'){
+				steps {
+					bat 'mvn clean install' 
+				}
+			}
+	    
 	}
 }
