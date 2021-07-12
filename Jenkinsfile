@@ -15,5 +15,12 @@ pipeline{
 					bat 'mvn clean install' 
 				}
 			}
+	    stage('codeQuality'){
+				steps {
+					withSonarQubeEnv('sonar'){
+					bat 'mvn sonar:sonar' 
+				}
+			}
 		}
 	}
+}
