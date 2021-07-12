@@ -3,12 +3,15 @@ pipeline{
 	stages{
 		stage('pull'){
 				steps {
-					echo 'pulling the code'
+					git credentialsId: 'github', url: 'https://github.com/trnayak11/devopsJava.git'
 				}
 			}
-		stage('build'){
+		stage('codeAnalsis'){
 				steps {
-					echo 'building the code'
+					def mvnHome = tool name: 'mvn' type: 'maven'
+					withSonarQubeEnv('sonar') {
+						sh "${mvnHome}/bin/mvn sonar:sonar"
+					}
 				}
 			}
 		stage('push'){
