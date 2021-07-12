@@ -17,15 +17,4 @@ pipeline{
 				}
 			}
 		}
-		post {
-			always {
-				echo 'always execute'
-			}
-			success {
-				echo 'suceeded'
-			}
-			failure {
-				echo 'failed'
-			}
-		}
 	}
