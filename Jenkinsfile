@@ -7,7 +7,7 @@ pipeline{
 	stages{
 		stage('pull'){
 				steps {
-					git credentialsId: 'github', url: 'https://github.com/trnayak11/devopsJava.git'
+					checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'github', url: 'https://github.com/trnayak11/devopsJava.git']]])
 				}
 			}
 		
