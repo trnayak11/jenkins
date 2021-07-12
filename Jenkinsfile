@@ -8,7 +8,7 @@ pipeline{
 			}
 		stage('codeAnalsis'){
 				steps {
-					def mvnHome = tool name: 'mvn' type: 'maven'
+					def mvnHome = tool name: 'mvn'
 					withSonarQubeEnv('sonar') {
 						sh "${mvnHome}/bin/mvn sonar:sonar"
 					}
